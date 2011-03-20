@@ -1,0 +1,7 @@
+*.user
+*.suo
+*.bak
+*.patch
+bin/
+obj/
+_ReSharper.RabiShot/
