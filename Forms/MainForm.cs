@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using RabiShot.Core;
@@ -60,10 +62,47 @@ namespace RabiShot.Forms
         /// <param name="e"></param>
         private void btnHidden_Click(object sender, EventArgs e)
         {
+            int x = 0, y = 0, width = 0, height = 0;
 
-            btnTake_Click(sender, e);
+            foreach (var screen in Screen.AllScreens)
+            {
+                if(x > screen.Bounds.X)
+                    x = screen.Bounds.X;
+                if(y > screen.Bounds.Y)
+                    y = screen.Bounds.Y;
+                if(screen.Bounds.X == 0 && screen.Bounds.Y == 0)
+                {
+                    width += screen.Bounds.Width;
+                    height += screen.Bounds.Height;
+                }
+                else
+                {
+                    width += Math.Abs(screen.Bounds.X);
+                    height += Math.Abs(screen.Bounds.Y);
+                }
+            }
+
+            var w = new TransparentForm(new Rectangle(x, y, width, height));
+            w.Show();
+
+//            var wList = Screen.AllScreens.Select(screen => new TransparentForm(screen.Bounds)).ToList();
+//
+//            foreach (var w in wList)
+//            {
+//                w.Show();
+//            }
+
+//            var w = new Form();
+//            w.BackColor = Color.Black;
+//            w.Opacity = 0.5;
+//            w.FormBorderStyle = FormBorderStyle.None;
+//            w.StartPosition = FormStartPosition.Manual;
+//            w.Location = new Point(0, 0);
+//            w.Size = new Size(2000, 1024);
+//            w.Show();
 
         }
+
         /// <summary>
         /// オプションボタンクリック時
         /// </summary>

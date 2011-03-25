@@ -37,7 +37,7 @@
             // 
             this.btnHidden.Location = new System.Drawing.Point(12, 12);
             this.btnHidden.Name = "btnHidden";
-            this.btnHidden.Size = new System.Drawing.Size(90, 23);
+            this.btnHidden.Size = new System.Drawing.Size(120, 23);
             this.btnHidden.TabIndex = 2;
             this.btnHidden.Text = "隠す";
             this.btnHidden.UseVisualStyleBackColor = true;
@@ -47,7 +47,7 @@
             // 
             this.btnOption.Location = new System.Drawing.Point(12, 41);
             this.btnOption.Name = "btnOption";
-            this.btnOption.Size = new System.Drawing.Size(90, 23);
+            this.btnOption.Size = new System.Drawing.Size(120, 23);
             this.btnOption.TabIndex = 3;
             this.btnOption.Text = "オプション";
             this.btnOption.UseVisualStyleBackColor = true;
@@ -57,7 +57,7 @@
             // 
             this.btnExit.Location = new System.Drawing.Point(12, 70);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(90, 23);
+            this.btnExit.Size = new System.Drawing.Size(120, 23);
             this.btnExit.TabIndex = 4;
             this.btnExit.Text = "終了";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(114, 105);
+            this.ClientSize = new System.Drawing.Size(144, 105);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnOption);
             this.Controls.Add(this.btnHidden);
