@@ -61,11 +61,11 @@
     <Compile Include="Forms\OptionForm.Designer.cs">
       <DependentUpon>OptionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TransparentForm.cs">
+    <Compile Include="Forms\SpecifiedRangeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TransparentForm.Designer.cs">
-      <DependentUpon>TransparentForm.cs</DependentUpon>
+    <Compile Include="Forms\SpecifiedRangeForm.Designer.cs">
+      <DependentUpon>SpecifiedRangeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Options\AspectType.cs" />
     <Compile Include="Program.cs" />
@@ -77,8 +77,8 @@
     <EmbeddedResource Include="Forms\OptionForm.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TransparentForm.resx">
-      <DependentUpon>TransparentForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SpecifiedRangeForm.resx">
+      <DependentUpon>SpecifiedRangeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,6 +1,6 @@
 ﻿namespace RabiShot.Forms
 {
-    sealed partial class TransparentForm
+    sealed partial class SpecifiedRangeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,16 @@
         {
             this.SuspendLayout();
             // 
-            // TransparentForm
+            // SpecifiedRangeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "TransparentForm";
-            this.Text = "TransparentForm";
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TransparentForm_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TransparentForm_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TransparentForm_MouseUp);
+            this.Name = "SpecifiedRangeForm";
+            this.Text = "SpecifiedRangeForm";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SpecifiedRangeForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SpecifiedRangeForm_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SpecifiedRangeForm_MouseUp);
             this.ResumeLayout(false);
 
         }

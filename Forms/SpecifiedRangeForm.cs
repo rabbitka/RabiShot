@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace RabiShot.Forms
 {
-    public sealed partial class TransparentForm : Form
+    public sealed partial class SpecifiedRangeForm : Form
     {
-        public TransparentForm(Rectangle rect)
+        public SpecifiedRangeForm(Rectangle rect)
             :this()
         {
             FormBorderStyle = FormBorderStyle.None;
@@ -16,7 +16,7 @@ namespace RabiShot.Forms
             TransparencyKey = Color.AliceBlue;
             Opacity = 0.7;
         }
-        private TransparentForm()
+        private SpecifiedRangeForm()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace RabiShot.Forms
         private Rectangle _drawingRect;
         private string _drawingRectString;
 
-        private void TransparentForm_MouseDown(object sender, MouseEventArgs e)
+        private void SpecifiedRangeForm_MouseDown(object sender, MouseEventArgs e)
         {
             _isDrawing = true;
             _p1X = e.X;
@@ -40,7 +40,7 @@ namespace RabiShot.Forms
             _p2Y = e.Y;
         }
 
-        private void TransparentForm_MouseMove(object sender, MouseEventArgs e)
+        private void SpecifiedRangeForm_MouseMove(object sender, MouseEventArgs e)
         {
             if(!_isDrawing)
                 return;
@@ -59,7 +59,7 @@ namespace RabiShot.Forms
             g.FillRectangle(Brushes.AliceBlue, _drawingRect);
         }
 
-        private void TransparentForm_MouseUp(object sender, MouseEventArgs e)
+        private void SpecifiedRangeForm_MouseUp(object sender, MouseEventArgs e)
         {
             _isDrawing = false;
 

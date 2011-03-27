@@ -79,7 +79,7 @@ namespace RabiShot.Forms
                 }
             }
 
-            var w = new TransparentForm(new Rectangle(x, y, width, height));
+            var w = new SpecifiedRangeForm(new Rectangle(x, y, width, height));
             w.ShowDialog();
             var rect = w.SelectedRectangle;
 

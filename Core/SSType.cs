@@ -138,7 +138,7 @@ namespace RabiShot.Core
         {
             // 範囲指定用フォームを表示させるため、画面全体の大きさを表す
             // Rectangleを取得している
-            var w = new TransparentForm(GetAllRectangle());
+            var w = new SpecifiedRangeForm(GetAllRectangle());
             w.ShowDialog();
             return w.SelectedRectangle;
         }
