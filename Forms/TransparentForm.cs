@@ -5,37 +5,30 @@ namespace RabiShot.Forms
 {
     public sealed partial class TransparentForm : Form
     {
-        private readonly Rectangle _rect;
 
         public TransparentForm(Rectangle rect)
             :this()
         {
-            _rect = rect;
             FormBorderStyle = FormBorderStyle.None;
             StartPosition = FormStartPosition.Manual;
             Location = new Point(rect.X, rect.Y);
             Size = rect.Size;
             BackColor = Color.Black;
-            Opacity = 0.5;
-
-            SetStyle(
-                ControlStyles.DoubleBuffer |
-                ControlStyles.UserPaint |
-                ControlStyles.AllPaintingInWmPaint,
-                true);
+            TransparencyKey = Color.Red;
+            Opacity = 0.7;
         }
         private TransparentForm()
         {
             InitializeComponent();
         }
 
+        public Rectangle SelectedRectangle { get; set; }
+
         private bool _isDrawing;
         private int _p1X;
         private int _p1Y;
         private int _p2X;
         private int _p2Y;
-        private string _rectString = string.Empty;
-
 
         private void TransparentForm_MouseDown(object sender, MouseEventArgs e)
         {
@@ -50,15 +43,12 @@ namespace RabiShot.Forms
         {
             if(!_isDrawing)
                 return;
-            // 前回書いたものを消してから、今回の四角を書く
+
             var g = CreateGraphics();
-            g.DrawRectangle(new Pen(Color.Black, 12F), GetRectangle());
-            g.DrawString(_rectString, Font, Brushes.Black, 100, 100);
+            g.FillRectangle(Brushes.Black, GetRectangle());
             _p2X = e.X;
             _p2Y = e.Y;
-            g.DrawRectangle(new Pen(Color.Red, 12F), GetRectangle());
-            _rectString = GetRectangle().ToString();
-            g.DrawString(_rectString, Font, Brushes.Yellow, 100, 100);
+            g.FillRectangle(Brushes.Red, GetRectangle());
         }
 
         private void TransparentForm_MouseUp(object sender, MouseEventArgs e)
@@ -95,7 +85,6 @@ namespace RabiShot.Forms
 
             return new Rectangle(x, y, width, height);
         }
-
 
     }
 }
