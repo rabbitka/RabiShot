@@ -48,6 +48,7 @@
     <Compile Include="Core\HotKey.cs" />
     <Compile Include="Core\SSType.cs" />
     <Compile Include="Core\XmlSetting.cs" />
+    <Compile Include="Extensions\ImageFormatExtensions.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

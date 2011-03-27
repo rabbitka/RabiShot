@@ -5,7 +5,6 @@ namespace RabiShot.Forms
 {
     public sealed partial class TransparentForm : Form
     {
-
         public TransparentForm(Rectangle rect)
             :this()
         {
@@ -14,7 +13,7 @@ namespace RabiShot.Forms
             Location = new Point(rect.X, rect.Y);
             Size = rect.Size;
             BackColor = Color.Black;
-            TransparencyKey = Color.Red;
+            TransparencyKey = Color.AliceBlue;
             Opacity = 0.7;
         }
         private TransparentForm()
@@ -29,6 +28,8 @@ namespace RabiShot.Forms
         private int _p1Y;
         private int _p2X;
         private int _p2Y;
+        private Rectangle _drawingRect;
+        private string _drawingRectString;
 
         private void TransparentForm_MouseDown(object sender, MouseEventArgs e)
         {
@@ -45,16 +46,27 @@ namespace RabiShot.Forms
                 return;
 
             var g = CreateGraphics();
-            g.FillRectangle(Brushes.Black, GetRectangle());
+            g.FillRectangle(Brushes.Black, _drawingRect);
+
             _p2X = e.X;
             _p2Y = e.Y;
-            g.FillRectangle(Brushes.Red, GetRectangle());
+            _drawingRect = GetRectangle();
+            _drawingRectString =
+                string.Format("Width: {0}px, Height: {1}px",
+                              _drawingRect.Width,
+                              _drawingRect.Height);
+
+            g.FillRectangle(Brushes.AliceBlue, _drawingRect);
         }
 
         private void TransparentForm_MouseUp(object sender, MouseEventArgs e)
         {
             _isDrawing = false;
 
+            _p2X = e.X;
+            _p2Y = e.Y;
+            SelectedRectangle = GetRectangle();
+            Close();
         }
 
         private Rectangle GetRectangle()

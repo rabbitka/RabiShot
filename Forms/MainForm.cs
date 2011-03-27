@@ -25,8 +25,6 @@ namespace RabiShot.Forms
             hotKey.HotKeyPush += btnTake_Click;
         }
 
-
-
         /// <summary>
         /// 撮影ボタンクリック時
         /// </summary>
@@ -34,7 +32,6 @@ namespace RabiShot.Forms
         /// <param name="e"></param>
         private void btnTake_Click(object sender, EventArgs e)
         {
-
             Rectangle rect = SSType.Window.GetRectangle();
             var bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppPArgb);
 
@@ -83,26 +80,11 @@ namespace RabiShot.Forms
             }
 
             var w = new TransparentForm(new Rectangle(x, y, width, height));
-            w.Show();
+            w.ShowDialog();
+            var rect = w.SelectedRectangle;
 
-//            var wList = Screen.AllScreens.Select(screen => new TransparentForm(screen.Bounds)).ToList();
-//
-//            foreach (var w in wList)
-//            {
-//                w.Show();
-//            }
-
-//            var w = new Form();
-//            w.BackColor = Color.Black;
-//            w.Opacity = 0.5;
-//            w.FormBorderStyle = FormBorderStyle.None;
-//            w.StartPosition = FormStartPosition.Manual;
-//            w.Location = new Point(0, 0);
-//            w.Size = new Size(2000, 1024);
-//            w.Show();
-
+            
         }
-
         /// <summary>
         /// オプションボタンクリック時
         /// </summary>
@@ -120,7 +102,7 @@ namespace RabiShot.Forms
         /// <param name="e"></param>
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Application.Exit();
         }
 
         #region Win32API
