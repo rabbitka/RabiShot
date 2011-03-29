@@ -59,6 +59,11 @@ namespace RabiShot.Forms
         /// <param name="e"></param>
         private void btnHidden_Click(object sender, EventArgs e)
         {
+            Option.Instance().CreateFileName();
+
+            return;
+
+
             int x = 0, y = 0, width = 0, height = 0;
 
             foreach (var screen in Screen.AllScreens)
