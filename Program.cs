@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using RabiShot.Core;
-using RabiShot.Forms;
 
 
 namespace RabiShot

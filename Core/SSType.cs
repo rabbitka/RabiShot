@@ -5,8 +5,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using RabiShot.Extensions;
-using RabiShot.Forms;
-using RabiShot.Options;
 
 
 namespace RabiShot.Core

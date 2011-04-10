@@ -1,4 +1,4 @@
-﻿namespace RabiShot.Forms
+﻿namespace RabiShot
 {
     sealed partial class SpecifiedRangeForm
     {

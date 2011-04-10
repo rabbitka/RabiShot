@@ -1,9 +1,9 @@
 ﻿using System.Drawing.Imaging;
 using System.IO;
-using System.Xml;
 using RabiShot.Core;
 
-namespace RabiShot.Options
+
+namespace RabiShot
 {
     public class Option
     {
