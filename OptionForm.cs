@@ -20,7 +20,7 @@ namespace RabiShot
         protected void Initialize()
         {
 
-            var formatList = new KeyValuePair<string, ImageFormat>[]
+            var formatList = new []
             {
                 new KeyValuePair<string, ImageFormat>(".png", ImageFormat.Png), 
                 new KeyValuePair<string, ImageFormat>(".bmp", ImageFormat.Bmp), 
@@ -30,7 +30,7 @@ namespace RabiShot
             cmbImageFormat.DisplayMember = "Key";
             cmbImageFormat.ValueMember = "Value";
 
-            var aspectList = new KeyValuePair<string, AspectType>[]
+            var aspectList = new []
             {
                 new KeyValuePair<string, AspectType>(AspectType.Width.GetName(), AspectType.Width),
                 new KeyValuePair<string, AspectType>(AspectType.Height.GetName(), AspectType.Height),
@@ -44,14 +44,10 @@ namespace RabiShot
             var op = Option.Instance();
             // 保存先
             txtSaveDirectory.Text = op.SaveDirectory;
-            txtPrefix.Text = op.FilePrefix;
-            txtSerial.Text = op.SerialFormat;
-            txtSuffix.Text = op.FileSuffix;
+            txtFileName.Text = op.FileName;
             cmbImageFormat.SelectedItem = op.Format;
             // 後処理
             chkDoAfterProcessing.Checked = op.DoAfterProcessing;
-            chkDoBeforeEdit.Checked = op.DoBeforeEdit;
-            txtDoBeforeEdit.Text = op.DoBeforeEditPath;
             chkDoResize.Checked = op.DoResize;
             txtWidthBiggerSrc.Text = op.WidthBiggerSrc.ToString();
             txtWidthBiggerDest.Text = op.WidthBiggerDest.ToString();
@@ -80,14 +76,10 @@ namespace RabiShot
             var op = Option.Instance();
             // 保存先
             op.SaveDirectory = txtSaveDirectory.Text;
-            op.FilePrefix = txtPrefix.Text;
-            op.SerialFormat = txtSerial.Text;
-            op.FileSuffix = txtSuffix.Text;
+            op.FileName = txtFileName.Text;
             op.Format = ((KeyValuePair<string, ImageFormat>)cmbImageFormat.SelectedItem).Value;
             // 後処理
             op.DoAfterProcessing = chkDoAfterProcessing.Checked;
-            op.DoBeforeEdit = chkDoBeforeEdit.Checked;
-            op.DoBeforeEditPath = txtDoBeforeEdit.Text;
             op.DoResize = chkDoResize.Checked;
             op.WidthBiggerSrc = int.Parse(txtWidthBiggerSrc.Text);
             op.WidthBiggerDest = int.Parse(txtWidthBiggerDest.Text);
