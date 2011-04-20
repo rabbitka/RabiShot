@@ -70,13 +70,7 @@ namespace RabiShot.Core
 
         private static string CreateFileName()
         {
-            var o = Option.Instance();
-            return string.Format(
-                "{0}{1}{2}.{3}",
-                o.FilePrefix,
-                CreateSerial(o.SerialFormat),
-                o.FileSuffix,
-                o.Format.GetExtension());
+            throw new NotImplementedException();
         }
         private static string CreateSerial(string fmt)
         {
