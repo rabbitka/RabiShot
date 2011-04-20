@@ -34,12 +34,8 @@
             this.grpSave = new System.Windows.Forms.GroupBox();
             this.lblImageFormat = new System.Windows.Forms.Label();
             this.cmbImageFormat = new System.Windows.Forms.ComboBox();
-            this.txtSuffix = new System.Windows.Forms.TextBox();
-            this.txtPrefix = new System.Windows.Forms.TextBox();
-            this.lblSerial = new System.Windows.Forms.Label();
-            this.lblSuffix = new System.Windows.Forms.Label();
-            this.lblPrefix = new System.Windows.Forms.Label();
-            this.lblFile = new System.Windows.Forms.Label();
+            this.txtFileName = new System.Windows.Forms.TextBox();
+            this.lblFileName = new System.Windows.Forms.Label();
             this.grpAfter = new System.Windows.Forms.GroupBox();
             this.cmbKeepAspect = new System.Windows.Forms.ComboBox();
             this.txtHeightLessDest = new System.Windows.Forms.TextBox();
@@ -66,16 +62,12 @@
             this.lblWidthBigger01 = new System.Windows.Forms.Label();
             this.txtDoAfterEdit = new System.Windows.Forms.TextBox();
             this.btnDoAfterEdit = new System.Windows.Forms.Button();
-            this.txtDoBeforeEdit = new System.Windows.Forms.TextBox();
             this.chkDoAfterEdit = new System.Windows.Forms.CheckBox();
-            this.chkDoBeforeEdit = new System.Windows.Forms.CheckBox();
             this.chkDoResize = new System.Windows.Forms.CheckBox();
             this.chkKeepAspect = new System.Windows.Forms.CheckBox();
             this.chkDoAfterProcessing = new System.Windows.Forms.CheckBox();
-            this.btnDoBeforeEdit = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtSerial = new System.Windows.Forms.TextBox();
             this.grpSave.SuspendLayout();
             this.grpAfter.SuspendLayout();
             this.SuspendLayout();
@@ -110,19 +102,14 @@
             // 
             this.grpSave.Controls.Add(this.lblImageFormat);
             this.grpSave.Controls.Add(this.cmbImageFormat);
-            this.grpSave.Controls.Add(this.txtSerial);
-            this.grpSave.Controls.Add(this.txtSuffix);
-            this.grpSave.Controls.Add(this.txtPrefix);
-            this.grpSave.Controls.Add(this.lblSerial);
-            this.grpSave.Controls.Add(this.lblSuffix);
-            this.grpSave.Controls.Add(this.lblPrefix);
-            this.grpSave.Controls.Add(this.lblFile);
+            this.grpSave.Controls.Add(this.txtFileName);
+            this.grpSave.Controls.Add(this.lblFileName);
             this.grpSave.Controls.Add(this.lblSaveDirectory);
             this.grpSave.Controls.Add(this.btnSaveDirectory);
             this.grpSave.Controls.Add(this.txtSaveDirectory);
             this.grpSave.Location = new System.Drawing.Point(12, 12);
             this.grpSave.Name = "grpSave";
-            this.grpSave.Size = new System.Drawing.Size(359, 105);
+            this.grpSave.Size = new System.Drawing.Size(359, 93);
             this.grpSave.TabIndex = 0;
             this.grpSave.TabStop = false;
             this.grpSave.Text = "保存先";
@@ -131,7 +118,7 @@
             // 
             this.lblImageFormat.AutoSize = true;
             this.lblImageFormat.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblImageFormat.Location = new System.Drawing.Point(294, 64);
+            this.lblImageFormat.Location = new System.Drawing.Point(294, 52);
             this.lblImageFormat.Name = "lblImageFormat";
             this.lblImageFormat.Size = new System.Drawing.Size(53, 12);
             this.lblImageFormat.TabIndex = 10;
@@ -140,64 +127,27 @@
             // cmbImageFormat
             // 
             this.cmbImageFormat.FormattingEnabled = true;
-            this.cmbImageFormat.Location = new System.Drawing.Point(296, 79);
+            this.cmbImageFormat.Location = new System.Drawing.Point(296, 67);
             this.cmbImageFormat.Name = "cmbImageFormat";
             this.cmbImageFormat.Size = new System.Drawing.Size(48, 20);
             this.cmbImageFormat.TabIndex = 11;
             // 
-            // txtSuffix
+            // txtFileName
             // 
-            this.txtSuffix.Location = new System.Drawing.Point(200, 79);
-            this.txtSuffix.Name = "txtSuffix";
-            this.txtSuffix.Size = new System.Drawing.Size(90, 19);
-            this.txtSuffix.TabIndex = 9;
+            this.txtFileName.Location = new System.Drawing.Point(8, 68);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(283, 19);
+            this.txtFileName.TabIndex = 5;
             // 
-            // txtPrefix
+            // lblFileName
             // 
-            this.txtPrefix.Location = new System.Drawing.Point(8, 79);
-            this.txtPrefix.Name = "txtPrefix";
-            this.txtPrefix.Size = new System.Drawing.Size(90, 19);
-            this.txtPrefix.TabIndex = 5;
-            // 
-            // lblSerial
-            // 
-            this.lblSerial.AutoSize = true;
-            this.lblSerial.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblSerial.Location = new System.Drawing.Point(102, 64);
-            this.lblSerial.Name = "lblSerial";
-            this.lblSerial.Size = new System.Drawing.Size(59, 12);
-            this.lblSerial.TabIndex = 6;
-            this.lblSerial.Text = "連番/日時";
-            // 
-            // lblSuffix
-            // 
-            this.lblSuffix.AutoSize = true;
-            this.lblSuffix.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblSuffix.Location = new System.Drawing.Point(198, 64);
-            this.lblSuffix.Name = "lblSuffix";
-            this.lblSuffix.Size = new System.Drawing.Size(54, 12);
-            this.lblSuffix.TabIndex = 8;
-            this.lblSuffix.Text = "サフィックス";
-            // 
-            // lblPrefix
-            // 
-            this.lblPrefix.AutoSize = true;
-            this.lblPrefix.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblPrefix.Location = new System.Drawing.Point(6, 64);
-            this.lblPrefix.Name = "lblPrefix";
-            this.lblPrefix.Size = new System.Drawing.Size(62, 12);
-            this.lblPrefix.TabIndex = 4;
-            this.lblPrefix.Text = "プレフィックス";
-            // 
-            // lblFile
-            // 
-            this.lblFile.AutoSize = true;
-            this.lblFile.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblFile.Location = new System.Drawing.Point(6, 52);
-            this.lblFile.Name = "lblFile";
-            this.lblFile.Size = new System.Drawing.Size(51, 12);
-            this.lblFile.TabIndex = 3;
-            this.lblFile.Text = "ファイル名";
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblFileName.Location = new System.Drawing.Point(6, 52);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(51, 12);
+            this.lblFileName.TabIndex = 3;
+            this.lblFileName.Text = "ファイル名";
             // 
             // grpAfter
             // 
@@ -226,16 +176,13 @@
             this.grpAfter.Controls.Add(this.lblWidthBigger01);
             this.grpAfter.Controls.Add(this.txtDoAfterEdit);
             this.grpAfter.Controls.Add(this.btnDoAfterEdit);
-            this.grpAfter.Controls.Add(this.txtDoBeforeEdit);
             this.grpAfter.Controls.Add(this.chkDoAfterEdit);
-            this.grpAfter.Controls.Add(this.chkDoBeforeEdit);
             this.grpAfter.Controls.Add(this.chkDoResize);
             this.grpAfter.Controls.Add(this.chkKeepAspect);
             this.grpAfter.Controls.Add(this.chkDoAfterProcessing);
-            this.grpAfter.Controls.Add(this.btnDoBeforeEdit);
-            this.grpAfter.Location = new System.Drawing.Point(12, 123);
+            this.grpAfter.Location = new System.Drawing.Point(12, 111);
             this.grpAfter.Name = "grpAfter";
-            this.grpAfter.Size = new System.Drawing.Size(359, 300);
+            this.grpAfter.Size = new System.Drawing.Size(359, 251);
             this.grpAfter.TabIndex = 1;
             this.grpAfter.TabStop = false;
             this.grpAfter.Text = "後処理";
@@ -243,49 +190,49 @@
             // cmbKeepAspect
             // 
             this.cmbKeepAspect.FormattingEnabled = true;
-            this.cmbKeepAspect.Location = new System.Drawing.Point(61, 225);
+            this.cmbKeepAspect.Location = new System.Drawing.Point(61, 178);
             this.cmbKeepAspect.Name = "cmbKeepAspect";
             this.cmbKeepAspect.Size = new System.Drawing.Size(120, 20);
             this.cmbKeepAspect.TabIndex = 27;
             // 
             // txtHeightLessDest
             // 
-            this.txtHeightLessDest.Location = new System.Drawing.Point(188, 166);
+            this.txtHeightLessDest.Location = new System.Drawing.Point(187, 119);
             this.txtHeightLessDest.Name = "txtHeightLessDest";
             this.txtHeightLessDest.Size = new System.Drawing.Size(36, 19);
             this.txtHeightLessDest.TabIndex = 23;
             // 
             // txtWidthLessDest
             // 
-            this.txtWidthLessDest.Location = new System.Drawing.Point(188, 124);
+            this.txtWidthLessDest.Location = new System.Drawing.Point(187, 77);
             this.txtWidthLessDest.Name = "txtWidthLessDest";
             this.txtWidthLessDest.Size = new System.Drawing.Size(36, 19);
             this.txtWidthLessDest.TabIndex = 13;
             // 
             // txtHeightBiggerDest
             // 
-            this.txtHeightBiggerDest.Location = new System.Drawing.Point(188, 145);
+            this.txtHeightBiggerDest.Location = new System.Drawing.Point(187, 98);
             this.txtHeightBiggerDest.Name = "txtHeightBiggerDest";
             this.txtHeightBiggerDest.Size = new System.Drawing.Size(36, 19);
             this.txtHeightBiggerDest.TabIndex = 18;
             // 
             // txtWidthBiggerDest
             // 
-            this.txtWidthBiggerDest.Location = new System.Drawing.Point(188, 103);
+            this.txtWidthBiggerDest.Location = new System.Drawing.Point(187, 56);
             this.txtWidthBiggerDest.Name = "txtWidthBiggerDest";
             this.txtWidthBiggerDest.Size = new System.Drawing.Size(36, 19);
             this.txtWidthBiggerDest.TabIndex = 8;
             // 
             // txtHeightLessSrc
             // 
-            this.txtHeightLessSrc.Location = new System.Drawing.Point(77, 166);
+            this.txtHeightLessSrc.Location = new System.Drawing.Point(76, 119);
             this.txtHeightLessSrc.Name = "txtHeightLessSrc";
             this.txtHeightLessSrc.Size = new System.Drawing.Size(36, 19);
             this.txtHeightLessSrc.TabIndex = 21;
             // 
             // txtWidthLessSrc
             // 
-            this.txtWidthLessSrc.Location = new System.Drawing.Point(77, 124);
+            this.txtWidthLessSrc.Location = new System.Drawing.Point(76, 77);
             this.txtWidthLessSrc.Name = "txtWidthLessSrc";
             this.txtWidthLessSrc.Size = new System.Drawing.Size(36, 19);
             this.txtWidthLessSrc.TabIndex = 11;
@@ -293,7 +240,7 @@
             // lblHeightLess03
             // 
             this.lblHeightLess03.AutoSize = true;
-            this.lblHeightLess03.Location = new System.Drawing.Point(230, 169);
+            this.lblHeightLess03.Location = new System.Drawing.Point(229, 122);
             this.lblHeightLess03.Name = "lblHeightLess03";
             this.lblHeightLess03.Size = new System.Drawing.Size(57, 12);
             this.lblHeightLess03.TabIndex = 24;
@@ -302,7 +249,7 @@
             // lblWidthLess03
             // 
             this.lblWidthLess03.AutoSize = true;
-            this.lblWidthLess03.Location = new System.Drawing.Point(230, 127);
+            this.lblWidthLess03.Location = new System.Drawing.Point(229, 80);
             this.lblWidthLess03.Name = "lblWidthLess03";
             this.lblWidthLess03.Size = new System.Drawing.Size(57, 12);
             this.lblWidthLess03.TabIndex = 14;
@@ -310,14 +257,14 @@
             // 
             // txtHeightBiggerSrc
             // 
-            this.txtHeightBiggerSrc.Location = new System.Drawing.Point(77, 145);
+            this.txtHeightBiggerSrc.Location = new System.Drawing.Point(76, 98);
             this.txtHeightBiggerSrc.Name = "txtHeightBiggerSrc";
             this.txtHeightBiggerSrc.Size = new System.Drawing.Size(36, 19);
             this.txtHeightBiggerSrc.TabIndex = 16;
             // 
             // txtWidthBiggerSrc
             // 
-            this.txtWidthBiggerSrc.Location = new System.Drawing.Point(77, 103);
+            this.txtWidthBiggerSrc.Location = new System.Drawing.Point(76, 56);
             this.txtWidthBiggerSrc.Name = "txtWidthBiggerSrc";
             this.txtWidthBiggerSrc.Size = new System.Drawing.Size(36, 19);
             this.txtWidthBiggerSrc.TabIndex = 6;
@@ -325,7 +272,7 @@
             // lblHeightLess02
             // 
             this.lblHeightLess02.AutoSize = true;
-            this.lblHeightLess02.Location = new System.Drawing.Point(119, 169);
+            this.lblHeightLess02.Location = new System.Drawing.Point(118, 122);
             this.lblHeightLess02.Name = "lblHeightLess02";
             this.lblHeightLess02.Size = new System.Drawing.Size(63, 12);
             this.lblHeightLess02.TabIndex = 22;
@@ -334,7 +281,7 @@
             // lblWidthLess02
             // 
             this.lblWidthLess02.AutoSize = true;
-            this.lblWidthLess02.Location = new System.Drawing.Point(119, 127);
+            this.lblWidthLess02.Location = new System.Drawing.Point(118, 80);
             this.lblWidthLess02.Name = "lblWidthLess02";
             this.lblWidthLess02.Size = new System.Drawing.Size(63, 12);
             this.lblWidthLess02.TabIndex = 12;
@@ -343,7 +290,7 @@
             // lblHeightBigger03
             // 
             this.lblHeightBigger03.AutoSize = true;
-            this.lblHeightBigger03.Location = new System.Drawing.Point(230, 148);
+            this.lblHeightBigger03.Location = new System.Drawing.Point(229, 101);
             this.lblHeightBigger03.Name = "lblHeightBigger03";
             this.lblHeightBigger03.Size = new System.Drawing.Size(57, 12);
             this.lblHeightBigger03.TabIndex = 19;
@@ -352,7 +299,7 @@
             // lblWidthBigger03
             // 
             this.lblWidthBigger03.AutoSize = true;
-            this.lblWidthBigger03.Location = new System.Drawing.Point(230, 106);
+            this.lblWidthBigger03.Location = new System.Drawing.Point(229, 59);
             this.lblWidthBigger03.Name = "lblWidthBigger03";
             this.lblWidthBigger03.Size = new System.Drawing.Size(57, 12);
             this.lblWidthBigger03.TabIndex = 9;
@@ -361,7 +308,7 @@
             // lblKeepAspect02
             // 
             this.lblKeepAspect02.AutoSize = true;
-            this.lblKeepAspect02.Location = new System.Drawing.Point(186, 228);
+            this.lblKeepAspect02.Location = new System.Drawing.Point(186, 181);
             this.lblKeepAspect02.Name = "lblKeepAspect02";
             this.lblKeepAspect02.Size = new System.Drawing.Size(57, 12);
             this.lblKeepAspect02.TabIndex = 28;
@@ -370,7 +317,7 @@
             // lblKeepAspect01
             // 
             this.lblKeepAspect01.AutoSize = true;
-            this.lblKeepAspect01.Location = new System.Drawing.Point(60, 210);
+            this.lblKeepAspect01.Location = new System.Drawing.Point(60, 163);
             this.lblKeepAspect01.Name = "lblKeepAspect01";
             this.lblKeepAspect01.Size = new System.Drawing.Size(139, 12);
             this.lblKeepAspect01.TabIndex = 26;
@@ -379,7 +326,7 @@
             // lblHeightLess01
             // 
             this.lblHeightLess01.AutoSize = true;
-            this.lblHeightLess01.Location = new System.Drawing.Point(42, 169);
+            this.lblHeightLess01.Location = new System.Drawing.Point(41, 122);
             this.lblHeightLess01.Name = "lblHeightLess01";
             this.lblHeightLess01.Size = new System.Drawing.Size(35, 12);
             this.lblHeightLess01.TabIndex = 20;
@@ -388,7 +335,7 @@
             // lblWidthLess01
             // 
             this.lblWidthLess01.AutoSize = true;
-            this.lblWidthLess01.Location = new System.Drawing.Point(42, 127);
+            this.lblWidthLess01.Location = new System.Drawing.Point(41, 80);
             this.lblWidthLess01.Name = "lblWidthLess01";
             this.lblWidthLess01.Size = new System.Drawing.Size(27, 12);
             this.lblWidthLess01.TabIndex = 10;
@@ -397,7 +344,7 @@
             // lblHeightBigger02
             // 
             this.lblHeightBigger02.AutoSize = true;
-            this.lblHeightBigger02.Location = new System.Drawing.Point(119, 148);
+            this.lblHeightBigger02.Location = new System.Drawing.Point(118, 101);
             this.lblHeightBigger02.Name = "lblHeightBigger02";
             this.lblHeightBigger02.Size = new System.Drawing.Size(63, 12);
             this.lblHeightBigger02.TabIndex = 17;
@@ -406,7 +353,7 @@
             // lblWidthBigger02
             // 
             this.lblWidthBigger02.AutoSize = true;
-            this.lblWidthBigger02.Location = new System.Drawing.Point(119, 106);
+            this.lblWidthBigger02.Location = new System.Drawing.Point(118, 59);
             this.lblWidthBigger02.Name = "lblWidthBigger02";
             this.lblWidthBigger02.Size = new System.Drawing.Size(63, 12);
             this.lblWidthBigger02.TabIndex = 7;
@@ -415,7 +362,7 @@
             // lblHeightBigger01
             // 
             this.lblHeightBigger01.AutoSize = true;
-            this.lblHeightBigger01.Location = new System.Drawing.Point(42, 148);
+            this.lblHeightBigger01.Location = new System.Drawing.Point(41, 101);
             this.lblHeightBigger01.Name = "lblHeightBigger01";
             this.lblHeightBigger01.Size = new System.Drawing.Size(35, 12);
             this.lblHeightBigger01.TabIndex = 15;
@@ -424,7 +371,7 @@
             // lblWidthBigger01
             // 
             this.lblWidthBigger01.AutoSize = true;
-            this.lblWidthBigger01.Location = new System.Drawing.Point(42, 106);
+            this.lblWidthBigger01.Location = new System.Drawing.Point(42, 59);
             this.lblWidthBigger01.Name = "lblWidthBigger01";
             this.lblWidthBigger01.Size = new System.Drawing.Size(27, 12);
             this.lblWidthBigger01.TabIndex = 5;
@@ -432,51 +379,34 @@
             // 
             // txtDoAfterEdit
             // 
-            this.txtDoAfterEdit.Location = new System.Drawing.Point(44, 273);
+            this.txtDoAfterEdit.Location = new System.Drawing.Point(44, 226);
             this.txtDoAfterEdit.Name = "txtDoAfterEdit";
             this.txtDoAfterEdit.Size = new System.Drawing.Size(255, 19);
             this.txtDoAfterEdit.TabIndex = 30;
             // 
             // btnDoAfterEdit
             // 
-            this.btnDoAfterEdit.Location = new System.Drawing.Point(305, 271);
+            this.btnDoAfterEdit.Location = new System.Drawing.Point(305, 224);
             this.btnDoAfterEdit.Name = "btnDoAfterEdit";
             this.btnDoAfterEdit.Size = new System.Drawing.Size(48, 23);
             this.btnDoAfterEdit.TabIndex = 31;
             this.btnDoAfterEdit.Text = "参照...";
             this.btnDoAfterEdit.UseVisualStyleBackColor = true;
             // 
-            // txtDoBeforeEdit
-            // 
-            this.txtDoBeforeEdit.Location = new System.Drawing.Point(44, 62);
-            this.txtDoBeforeEdit.Name = "txtDoBeforeEdit";
-            this.txtDoBeforeEdit.Size = new System.Drawing.Size(255, 19);
-            this.txtDoBeforeEdit.TabIndex = 2;
-            // 
             // chkDoAfterEdit
             // 
             this.chkDoAfterEdit.AutoSize = true;
-            this.chkDoAfterEdit.Location = new System.Drawing.Point(26, 251);
+            this.chkDoAfterEdit.Location = new System.Drawing.Point(26, 204);
             this.chkDoAfterEdit.Name = "chkDoAfterEdit";
             this.chkDoAfterEdit.Size = new System.Drawing.Size(174, 16);
             this.chkDoAfterEdit.TabIndex = 29;
             this.chkDoAfterEdit.Text = "サイズ変更後に画像を編集する";
             this.chkDoAfterEdit.UseVisualStyleBackColor = true;
             // 
-            // chkDoBeforeEdit
-            // 
-            this.chkDoBeforeEdit.AutoSize = true;
-            this.chkDoBeforeEdit.Location = new System.Drawing.Point(26, 40);
-            this.chkDoBeforeEdit.Name = "chkDoBeforeEdit";
-            this.chkDoBeforeEdit.Size = new System.Drawing.Size(174, 16);
-            this.chkDoBeforeEdit.TabIndex = 1;
-            this.chkDoBeforeEdit.Text = "サイズ変更前に画像を編集する";
-            this.chkDoBeforeEdit.UseVisualStyleBackColor = true;
-            // 
             // chkDoResize
             // 
             this.chkDoResize.AutoSize = true;
-            this.chkDoResize.Location = new System.Drawing.Point(26, 87);
+            this.chkDoResize.Location = new System.Drawing.Point(26, 40);
             this.chkDoResize.Name = "chkDoResize";
             this.chkDoResize.Size = new System.Drawing.Size(139, 16);
             this.chkDoResize.TabIndex = 4;
@@ -486,7 +416,7 @@
             // chkKeepAspect
             // 
             this.chkKeepAspect.AutoSize = true;
-            this.chkKeepAspect.Location = new System.Drawing.Point(44, 191);
+            this.chkKeepAspect.Location = new System.Drawing.Point(44, 144);
             this.chkKeepAspect.Name = "chkKeepAspect";
             this.chkKeepAspect.Size = new System.Drawing.Size(132, 16);
             this.chkKeepAspect.TabIndex = 25;
@@ -503,18 +433,9 @@
             this.chkDoAfterProcessing.Text = "スクリーンショット取得後、後処理をする";
             this.chkDoAfterProcessing.UseVisualStyleBackColor = true;
             // 
-            // btnDoBeforeEdit
-            // 
-            this.btnDoBeforeEdit.Location = new System.Drawing.Point(305, 60);
-            this.btnDoBeforeEdit.Name = "btnDoBeforeEdit";
-            this.btnDoBeforeEdit.Size = new System.Drawing.Size(48, 23);
-            this.btnDoBeforeEdit.TabIndex = 3;
-            this.btnDoBeforeEdit.Text = "参照...";
-            this.btnDoBeforeEdit.UseVisualStyleBackColor = true;
-            // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(296, 429);
+            this.btnOK.Location = new System.Drawing.Point(296, 368);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 30);
             this.btnOK.TabIndex = 3;
@@ -524,7 +445,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(215, 433);
+            this.btnCancel.Location = new System.Drawing.Point(215, 372);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -532,18 +453,11 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // txtSerial
-            // 
-            this.txtSerial.Location = new System.Drawing.Point(104, 79);
-            this.txtSerial.Name = "txtSerial";
-            this.txtSerial.Size = new System.Drawing.Size(90, 19);
-            this.txtSerial.TabIndex = 9;
-            // 
             // OptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(383, 471);
+            this.ClientSize = new System.Drawing.Size(383, 410);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.grpAfter);
@@ -569,25 +483,18 @@
         private System.Windows.Forms.GroupBox grpSave;
         private System.Windows.Forms.Label lblImageFormat;
         private System.Windows.Forms.ComboBox cmbImageFormat;
-        private System.Windows.Forms.TextBox txtSuffix;
-        private System.Windows.Forms.TextBox txtPrefix;
-        private System.Windows.Forms.Label lblSerial;
-        private System.Windows.Forms.Label lblSuffix;
-        private System.Windows.Forms.Label lblPrefix;
-        private System.Windows.Forms.Label lblFile;
+        private System.Windows.Forms.TextBox txtFileName;
+        private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.GroupBox grpAfter;
         private System.Windows.Forms.CheckBox chkDoAfterProcessing;
         private System.Windows.Forms.CheckBox chkKeepAspect;
-        private System.Windows.Forms.CheckBox chkDoBeforeEdit;
         private System.Windows.Forms.TextBox txtWidthBiggerSrc;
         private System.Windows.Forms.Label lblWidthBigger02;
         private System.Windows.Forms.Label lblWidthBigger01;
         private System.Windows.Forms.TextBox txtDoAfterEdit;
         private System.Windows.Forms.Button btnDoAfterEdit;
-        private System.Windows.Forms.TextBox txtDoBeforeEdit;
         private System.Windows.Forms.CheckBox chkDoAfterEdit;
         private System.Windows.Forms.CheckBox chkDoResize;
-        private System.Windows.Forms.Button btnDoBeforeEdit;
         private System.Windows.Forms.ComboBox cmbKeepAspect;
         private System.Windows.Forms.TextBox txtHeightLessDest;
         private System.Windows.Forms.TextBox txtWidthLessDest;
@@ -610,6 +517,5 @@
         private System.Windows.Forms.Label lblKeepAspect02;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.TextBox txtSerial;
     }
 }
