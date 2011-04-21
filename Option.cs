@@ -17,6 +17,7 @@ namespace RabiShot
         /// </summary>
         private static readonly string OptionFileName = "option.xml";
 
+
         private static Option _instance;
 
         private Option()
