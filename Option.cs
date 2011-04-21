@@ -7,14 +7,15 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using RabiShot.Core;
 
-namespace RabiShot.Options
+
+namespace RabiShot
 {
     public class Option
     {
         /// <summary>
         /// 設定ファイルのファイル名
         /// </summary>
-        private static readonly string FileName = "option.xml";
+        private static readonly string OptionFileName = "option.xml";
 
         private static Option _instance;
 
@@ -22,13 +23,9 @@ namespace RabiShot.Options
         {
             // 初期値
             SaveDirectory = @".\ss";
-            FilePrefix = "ss-";
-            SerialFormat = "000";
-            FileSuffix = string.Empty;
+            FileName = "";
             Format = ImageFormat.Png;
             DoAfterProcessing = true;
-            DoBeforeEdit = false;
-            DoBeforeEditPath = "mspaint %1";
             DoResize = true;
             WidthBiggerSrc = 640;
             WidthBiggerDest = 640;
@@ -44,7 +41,7 @@ namespace RabiShot.Options
             DoAfterEditPath = "mspaint %1";
 
             // 設定ファイルから読み込む
-            if(!File.Exists(FileName))
+            if(!File.Exists(OptionFileName))
             {
                 ExistOptionFile = false;
                 return;
@@ -68,13 +65,9 @@ namespace RabiShot.Options
         {
             var xml = new XmlSetting();
             xml.Add("SaveDirectory", SaveDirectory);
-            xml.Add("FilePrefix", FilePrefix);
-            xml.Add("SerialFormat", SerialFormat);
-            xml.Add("FileSuffix", FileSuffix);
+            xml.Add("FileName", FileName);
             xml.Add("Format", Format.ToString());
             xml.Add("DoAfterProcessing", DoAfterProcessing.ToString());
-            xml.Add("DoBeforeEdit", DoBeforeEdit.ToString());
-            xml.Add("DoBeforeEditPath", DoBeforeEditPath);
             xml.Add("DoResize", DoResize.ToString());
             xml.Add("WidthBiggerSrc", WidthBiggerSrc.ToString());
             xml.Add("WidthBiggerDest", WidthBiggerDest.ToString());
@@ -88,7 +81,7 @@ namespace RabiShot.Options
             xml.Add("AspectType", System.Convert.ToInt32(AspectType).ToString());
             xml.Add("DoAfterEdit", DoAfterEdit.ToString());
             xml.Add("DoAfterEditPath", DoAfterEditPath);
-            xml.Save(FileName);
+            xml.Save(OptionFileName);
         }
         /// <summary>
         /// 設定を読み込む
@@ -96,11 +89,9 @@ namespace RabiShot.Options
         public void Load()
         {
             var xml = new XmlSetting();
-            xml.Load(FileName);
+            xml.Load(OptionFileName);
             SaveDirectory = xml.Get("SaveDirectory");
-            FilePrefix = xml.Get("FilePrefix");
-            SerialFormat = xml.Get("SerialFormat");
-            FileSuffix = xml.Get("FileSuffix");
+            FileName = xml.Get("FileName");
             var fmt = xml.Get("Format");
             if(fmt == "Png")
                 Format = ImageFormat.Png;
@@ -109,8 +100,6 @@ namespace RabiShot.Options
             if(fmt == "Jpeg")
                 Format = ImageFormat.Jpeg;
             DoAfterProcessing = bool.Parse(xml.Get("DoAfterProcessing"));
-            DoBeforeEdit = bool.Parse(xml.Get("DoBeforeEdit"));
-            DoBeforeEditPath = xml.Get("DoBeforeEditPath");
             DoResize = bool.Parse(xml.Get("DoResize"));
             WidthBiggerSrc = int.Parse(xml.Get("WidthBiggerSrc"));
             WidthBiggerDest = int.Parse(xml.Get("WidthBiggerDest"));
@@ -138,15 +127,7 @@ namespace RabiShot.Options
         /// <summary>
         /// 保存先: ファイル名: プレフィックス
         /// </summary>
-        public string FilePrefix { get; set; }
-        /// <summary>
-        /// 保存先: ファイル名: 連番/日時
-        /// </summary>
-        public string SerialFormat { get; set; }
-        /// <summary>
-        /// 保存先: ファイル名: サフィックス
-        /// </summary>
-        public string FileSuffix { get; set; }
+        public string FileName { get; set; }
         /// <summary>
         /// 保存先: ファイル名: 画像形式
         /// </summary>
@@ -156,14 +137,6 @@ namespace RabiShot.Options
         /// 後処理: スクリーンショット取得後、後処理をする
         /// </summary>
         public bool DoAfterProcessing { get; set; }
-        /// <summary>
-        /// 後処理: サイズ変更前に画像を編集する
-        /// </summary>
-        public bool DoBeforeEdit { get; set; }
-        /// <summary>
-        /// 後処理: サイズ変更前に画像を編集するパス
-        /// </summary>
-        public string DoBeforeEditPath { get; set; }
         /// <summary>
         /// 後処理: 画像のサイズを変更する
         /// </summary>
@@ -306,6 +279,5 @@ namespace RabiShot.Options
 
             return string.Empty;
         }
-　
     }
 }

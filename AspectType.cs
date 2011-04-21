@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace RabiShot.Options
+
+namespace RabiShot
 {
     public enum AspectType
     {

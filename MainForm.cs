@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using RabiShot.Core;
-using RabiShot.Options;
 
 
-namespace RabiShot.Forms
+namespace RabiShot
 {
     public partial class MainForm : Form
     {
@@ -21,40 +15,17 @@ namespace RabiShot.Forms
         {
             InitializeComponent();
 
-            hotKey = new HotKey(MOD_KEY.ALT, Keys.PrintScreen);
-            hotKey.HotKeyPush += btnTake_Click;
+//            hotKey = new HotKey(MOD_KEY.ALT, Keys.PrintScreen);
+//            hotKey.HotKeyPush += btnTake_Click;
         }
 
-        /// <summary>
-        /// 撮影ボタンクリック時
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnTake_Click(object sender, EventArgs e)
-        {
-            Rectangle rect = SSType.Window.GetRectangle();
-            var bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppPArgb);
-
-            using(var g = Graphics.FromImage(bmp))
-            {
-                g.CopyFromScreen(rect.X, rect.Y, 0, 0, rect.Size, CopyPixelOperation.SourceCopy);
-            }
-
-            var dir = Option.Instance().SaveDirectory;
-            if(!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
-            bmp.Save(Option.Instance().SaveDirectory + "\\test.png", ImageFormat.Png);
-
-            // 画像のサイズ変更前に画像を編集する場合、ここで起動
-
-            // 画像のサイズ変更処理
-
-            // 画像のサイズ変更後に画像を編集する場合、ここで起動
-
-        }
         /// <summary>
         /// 隠すボタンクリック時
         /// </summary>
+        /// <remarks>
+        /// プログラムを終了せず、通知領域のみに表示させる。
+        /// テスト時にはこのボタンを使用して動作を確認。
+        /// </remarks>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnHidden_Click(object sender, EventArgs e)
@@ -62,7 +33,6 @@ namespace RabiShot.Forms
             Option.Instance().CreateFileName();
 
             return;
-
 
             int x = 0, y = 0, width = 0, height = 0;
 

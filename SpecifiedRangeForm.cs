@@ -1,7 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace RabiShot.Forms
+
+namespace RabiShot
 {
     public sealed partial class SpecifiedRangeForm : Form
     {
