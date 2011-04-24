@@ -31,7 +31,6 @@ namespace RabiShot
             SetRectangle(rect);
         }
 
-
         /// <summary>
         /// スクリーンショットを撮影する範囲を指定する。
         /// </summary>
@@ -55,6 +54,9 @@ namespace RabiShot
             if(_disposed)
                 throw new ObjectDisposedException("_raw, _processed");
 
+            if(_raw == null)
+                throw new InvalidOperationException("_raw のインスタンスが存在しません。");
+
             _processed = new Bitmap(size.Width, size.Height);
             using(var g = Graphics.FromImage(_processed))
             {
@@ -72,6 +74,9 @@ namespace RabiShot
         {
             if(_disposed)
                 throw new ObjectDisposedException("_raw, _processed");
+
+            if(_raw == null)
+                throw new InvalidOperationException("_raw のインスタンスが存在しません。");
 
             // 処理後の画像が存在する場合はそれを保存し、そうでない場合は取得時の画像を保存している
             Bitmap target = _processed ?? _raw;
@@ -107,11 +112,17 @@ namespace RabiShot
             return Path.Combine(dir, string.Format("{0}.{1}", fileName, extension));
         }
 
+
         #region Disposeパターン
 
         private bool _disposed;
 
-        public void Dispose()
+        void IDisposable.Dispose()
+        {
+            Close();
+        }
+
+        public void Close()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
