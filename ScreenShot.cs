@@ -2,6 +2,9 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using RabiShot.Extensions;
 
 
 namespace RabiShot
@@ -42,6 +45,7 @@ namespace RabiShot
         /// <summary>
         /// スクリーンショットをリサイズする
         /// </summary>
+        /// <param name="size">リサイズするサイズ</param>
         public void Resize(Size size)
         {
             if(_disposed)
@@ -65,7 +69,38 @@ namespace RabiShot
             if(_disposed)
                 throw new ObjectDisposedException("_raw, _processed");
 
+            // 処理後の画像が存在する場合はそれを保存し、そうでない場合は取得時の画像を保存している
+            Bitmap target = _processed ?? _raw;
 
+            string dir = Path.GetDirectoryName(path);
+            string fileName = Path.GetFileName(path);
+            string extension = format.GetExtension();
+
+            if(File.Exists(CreatePath(dir, fileName, extension)))
+            {
+                foreach(var i in Enumerable.Range(1, int.MaxValue))
+                {
+                    fileName = string.Format(
+                        "{0} ({1})",
+                        Path.GetFileName(path),
+                        i);
+
+                    if(!File.Exists(CreatePath(dir, fileName, extension)))
+                        break;
+                }
+            }
+
+            target.Save(CreatePath(dir, fileName, extension));
+        }
+
+        private static string CreatePath(string dir, string fileName, string extension)
+        {
+            if(string.IsNullOrEmpty(fileName))
+                throw new ArgumentNullException("fileName");
+            if(string.IsNullOrEmpty(extension))
+                throw new ArgumentNullException("extension");
+
+            return Path.Combine(dir, string.Format("{0}.{1}", fileName, extension));
         }
 
         #region Disposeパターン
