@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
 
@@ -41,10 +42,17 @@ namespace RabiShot
         /// <summary>
         /// スクリーンショットをリサイズする
         /// </summary>
-        public void Resize()
+        public void Resize(Size size)
         {
             if(_disposed)
                 throw new ObjectDisposedException("_raw, _processed");
+
+            _processed = new Bitmap(size.Width, size.Height);
+            using(var g = Graphics.FromImage(_processed))
+            {
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.DrawImage(_raw, 0, 0, size.Width, size.Height);
+            }
         }
 
         public void Open(string path)

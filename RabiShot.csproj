@@ -61,6 +61,7 @@
     <Compile Include="OptionForm.Designer.cs">
       <DependentUpon>OptionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScreenShot.cs" />
     <Compile Include="SpecifiedRangeForm.cs">
       <SubType>Form</SubType>
     </Compile>
