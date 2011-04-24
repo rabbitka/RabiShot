@@ -31,7 +31,11 @@ namespace RabiShot
         /// <remarks>この値を設定された時点で画像を取得する</remarks>
         public void SetRectangle(Rectangle rect)
         {
-            
+            _raw = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppPArgb);
+            using(var g = Graphics.FromImage(_raw))
+            {
+                g.CopyFromScreen(rect.X, rect.Y, 0, 0, rect.Size, CopyPixelOperation.SourceCopy);
+            }
         }
 
         /// <summary>
