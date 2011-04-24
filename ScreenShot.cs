@@ -17,11 +17,15 @@ namespace RabiShot
         private Bitmap _raw;
         private Bitmap _processed;
 
-
+        /// <summary>
+        /// クラスを初期化する。
+        /// </summary>
         public ScreenShot()
-        {
-            
-        }
+        { }
+        /// <summary>
+        /// スクリーンショットを撮影する範囲を指定してクラスを初期化する。
+        /// </summary>
+        /// <param name="rect"></param>
         public ScreenShot(Rectangle rect)
         {
             SetRectangle(rect);
