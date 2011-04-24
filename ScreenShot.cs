@@ -64,6 +64,11 @@ namespace RabiShot
             
         }
 
+        /// <summary>
+        /// スクリーンショットを保存する
+        /// </summary>
+        /// <param name="path">保存先のパス</param>
+        /// <param name="format">スクリーンショットの保存形式</param>
         public void Save(string path, ImageFormat format)
         {
             if(_disposed)
