@@ -90,7 +90,7 @@ namespace RabiShot
                 }
             }
 
-            target.Save(CreatePath(dir, fileName, extension));
+            target.Save(CreatePath(dir, fileName, extension), format);
         }
 
         private static string CreatePath(string dir, string fileName, string extension)
