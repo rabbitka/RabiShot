@@ -59,11 +59,6 @@ namespace RabiShot
             }
         }
 
-        public void Open(string path)
-        {
-            
-        }
-
         /// <summary>
         /// スクリーンショットを保存する
         /// </summary>
