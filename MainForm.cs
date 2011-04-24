@@ -30,7 +30,7 @@ namespace RabiShot
         /// <param name="e"></param>
         private void btnHidden_Click(object sender, EventArgs e)
         {
-            SSType.Window.GetScreenShot();
+            Option.Instance().CreateFileName();
 
             return;
 
