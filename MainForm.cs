@@ -9,14 +9,10 @@ namespace RabiShot
 {
     public partial class MainForm : Form
     {
-        private HotKey hotKey;
 
         public MainForm()
         {
             InitializeComponent();
-
-//            hotKey = new HotKey(MOD_KEY.ALT, Keys.PrintScreen);
-//            hotKey.HotKeyPush += btnTake_Click;
         }
 
         /// <summary>
@@ -98,11 +94,6 @@ namespace RabiShot
             private static extern IntPtr GetForegroundWindow();
 
         #endregion
-
-            private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-            {
-                hotKey.Dispose();
-            }
 
     }
 }
