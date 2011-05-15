@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using RabiShot.Core;
+using RabiShot.SSType;
 
 
 namespace RabiShot
@@ -24,37 +25,8 @@ namespace RabiShot
         /// </remarks>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnHidden_Click(object sender, EventArgs e)
-        {
-            Option.Instance().CreateFileName();
-
-            return;
-
-            int x = 0, y = 0, width = 0, height = 0;
-
-            foreach (var screen in Screen.AllScreens)
-            {
-                if(x > screen.Bounds.X)
-                    x = screen.Bounds.X;
-                if(y > screen.Bounds.Y)
-                    y = screen.Bounds.Y;
-                if(screen.Bounds.X == 0 && screen.Bounds.Y == 0)
-                {
-                    width += screen.Bounds.Width;
-                    height += screen.Bounds.Height;
-                }
-                else
-                {
-                    width += Math.Abs(screen.Bounds.X);
-                    height += Math.Abs(screen.Bounds.Y);
-                }
-            }
-
-            var w = new SpecifiedRangeForm(new Rectangle(x, y, width, height));
-            w.ShowDialog();
-            var rect = w.SelectedRectangle;
-
-            
+        private void btnHidden_Click(object sender, EventArgs e) {
+            new FreeArea().GetRectangle();
         }
         /// <summary>
         /// オプションボタンクリック時

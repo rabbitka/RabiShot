@@ -197,86 +197,86 @@ namespace RabiShot
         /// <returns>生成した 連番/日時</returns>
         public string CreateFileName()
         {
-            SerialFormat = "ss-<yyyy>/<MM>/<dd>-ss";
-            
-            if(string.IsNullOrEmpty(SerialFormat))
-                return string.Empty;
-
-            var stack = new Stack<char>();
-            var q = new Queue<char>();
-
-            StringBuilder wk;
-            var now = System.DateTime.Now;
-            var serials = new List<string>();
-            foreach (var s in SerialFormat)
-            {
+//            SerialFormat = "ss-<yyyy>/<MM>/<dd>-ss";
+//            
+//            if(string.IsNullOrEmpty(SerialFormat))
+//                return string.Empty;
+//
+//            var stack = new Stack<char>();
+//            var q = new Queue<char>();
+//
+//            StringBuilder wk;
+//            var now = System.DateTime.Now;
+//            var serials = new List<string>();
+//            foreach (var s in SerialFormat)
+//            {
                 // 独自フォーマットを文字列に変換する
-                if(s == '>')
-                {
-                    wk = new StringBuilder();
-                    while (stack.Peek() != '<')
-                    {
-                        wk.Insert(0, stack.Pop());
-                    }
+//                if(s == '>')
+//                {
+//                    wk = new StringBuilder();
+//                    while (stack.Peek() != '<')
+//                    {
+//                        wk.Insert(0, stack.Pop());
+//                    }
                     // '<'をスタックから取り除いている
-                    stack.Pop();
-                    var fmt = wk.ToString();
-
-                    if(Regex.IsMatch(fmt, @"^0+$"))
-                    {
-                        serials.Add(fmt);
-                        fmt = "{" + (serials.Count - 1) + "}";
-                    }
-                    else if(Regex.IsMatch(fmt, @"^#+0$"))
-                    {
-                        serials.Add(fmt);
-                        fmt = "{" + (serials.Count - 1) + "}";
-                    }
-                    else if(Regex.IsMatch(fmt, @"yyyy"))
-                    {
-                        fmt = now.Year.ToString("0000");
-                    }
-                    else if(Regex.IsMatch(fmt, @"MM"))
-                    {
-                        fmt = now.Month.ToString("00");
-                    }
-                    else if(Regex.IsMatch(fmt, @"dd"))
-                    {
-                        fmt = now.Day.ToString("00");
-                    }
-                    else if(Regex.IsMatch(fmt, @"hh"))
-                    {
-                        fmt = now.Hour.ToString("00");
-                    }
-                    else if(Regex.IsMatch(fmt, @"mm"))
-                    {
-                        fmt = now.Minute.ToString("00");
-                    }
-                    else if(Regex.IsMatch(fmt, @"ss"))
-                    {
-                        fmt = now.Second.ToString("00");
-                    }
-                    else
-                    {
-                        continue;
-                    }
-
-                    foreach (var c in fmt)
-                    {
-                        stack.Push(c);
-                    }
-
-                    continue;
-                }
-
-               stack.Push(s);
-            }
-
-            StringBuilder result = new StringBuilder();
-            while (stack.Peek() != null)
-            {
-                result.Append(stack.Pop());
-            }            
+//                    stack.Pop();
+//                    var fmt = wk.ToString();
+//
+//                    if(Regex.IsMatch(fmt, @"^0+$"))
+//                    {
+//                        serials.Add(fmt);
+//                        fmt = "{" + (serials.Count - 1) + "}";
+//                    }
+//                    else if(Regex.IsMatch(fmt, @"^#+0$"))
+//                    {
+//                        serials.Add(fmt);
+//                        fmt = "{" + (serials.Count - 1) + "}";
+//                    }
+//                    else if(Regex.IsMatch(fmt, @"yyyy"))
+//                    {
+//                        fmt = now.Year.ToString("0000");
+//                    }
+//                    else if(Regex.IsMatch(fmt, @"MM"))
+//                    {
+//                        fmt = now.Month.ToString("00");
+//                    }
+//                    else if(Regex.IsMatch(fmt, @"dd"))
+//                    {
+//                        fmt = now.Day.ToString("00");
+//                    }
+//                    else if(Regex.IsMatch(fmt, @"hh"))
+//                    {
+//                        fmt = now.Hour.ToString("00");
+//                    }
+//                    else if(Regex.IsMatch(fmt, @"mm"))
+//                    {
+//                        fmt = now.Minute.ToString("00");
+//                    }
+//                    else if(Regex.IsMatch(fmt, @"ss"))
+//                    {
+//                        fmt = now.Second.ToString("00");
+//                    }
+//                    else
+//                    {
+//                        continue;
+//                    }
+//
+//                    foreach (var c in fmt)
+//                    {
+//                        stack.Push(c);
+//                    }
+//
+//                    continue;
+//                }
+//
+//               stack.Push(s);
+//            }
+//
+//            StringBuilder result = new StringBuilder();
+//            while (stack.Peek() != null)
+//            {
+//                result.Append(stack.Pop());
+//            }            
 
             return string.Empty;
         }
