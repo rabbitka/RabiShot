@@ -1,13 +1,13 @@
-namespace RabiShot.Format {
+ï»¿namespace RabiShot.Format {
     /// <summary>
-    /// ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX
+    /// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
     /// </summary>
     public interface IFormat {
         /// <summary>
-        /// ƒtƒH[ƒ}ƒbƒg‚©‚ç•¶š—ñ‚ğ¶¬‚·‚éB
+        /// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‹ã‚‰æ–‡å­—åˆ—ã‚’ç”Ÿæˆã™ã‚‹ã€‚
         /// </summary>
-        /// <param name="fmt">ƒtƒH[ƒ}ƒbƒg</param>
-        /// <returns>¶¬‚µ‚½•¶š—ñ</returns>
+        /// <param name="fmt">ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ</param>
+        /// <returns>ç”Ÿæˆã—ãŸæ–‡å­—åˆ—</returns>
         string Generate(string fmt);
     }
 }
