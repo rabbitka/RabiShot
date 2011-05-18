@@ -3,8 +3,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using RabiShot.Extensions;
+using System.Text.RegularExpressions;
+using RabiShot.Format;
 
 
 namespace RabiShot {
@@ -14,21 +14,35 @@ namespace RabiShot {
     public class ScreenShot : IDisposable {
         private Bitmap _raw;
         private Bitmap _processed;
+        private readonly string _dir;
+        private readonly string _fileFmt;
+        private readonly ImageFormat _imgFmt;
+        private readonly string _ext;
+        private readonly MatchCollection _matches;
+        private static readonly Regex Rx = new Regex(@"<.+?>");
+        private static readonly Regex RxNum = new Regex(@"<[#0]*0>");
 
         /// <summary>
-        /// クラスを初期化する。
+        /// コンストラクタ。
         /// </summary>
-        public ScreenShot() { }
+        public ScreenShot() {
+            _dir = Option.Instance().SaveDirectory;
+            _fileFmt = Option.Instance().FileNameFormat;
+            _imgFmt = Option.Instance().ImageFormat;
+            // 拡張子を設定する。Jpegの場合は"jpg"、それ以外は名称をそのままに小文字に変換している。
+            _ext = _imgFmt.Equals(ImageFormat.Jpeg) ? "jpg" : _imgFmt.ToString().ToLower();
+            _matches = Rx.Matches(_fileFmt);
+        }
         /// <summary>
-        /// スクリーンショットを撮影する範囲を指定してクラスを初期化する。
+        /// スクリーンショットを保存する範囲を指定したコンストラクタ。
         /// </summary>
-        /// <param name="rect"></param>
-        public ScreenShot(Rectangle rect) {
+        /// <param name="rect">スクリーンショットの範囲</param>
+        public ScreenShot(Rectangle rect) : this() {
             SetRectangle(rect);
         }
 
         /// <summary>
-        /// スクリーンショットを撮影する範囲を指定する。
+        /// スクリーンショットを保存する範囲を指定する。
         /// </summary>
         /// <param name="rect">スクリーンショットの範囲</param>
         /// <remarks>この値を設定された時点で画像を取得する</remarks>
@@ -40,15 +54,32 @@ namespace RabiShot {
         }
 
         /// <summary>
-        /// スクリーンショットをリサイズする
+        /// TODO:スクリーンショットをファイルに保存する。
         /// </summary>
-        /// <param name="size">リサイズするサイズ</param>
-        public void Resize(Size size) {
+        public void Save() {
+            // Optionクラスから値を取得し、リサイズする場合のみ呼び出す。
+            //Resize();
+
+            //保存処理
+            var filePath = CreateFilePath();
+            var target = _processed ?? _raw;
+            target.Save(filePath);
+
+            //ペイントを開く処理
+        }
+
+        /// <summary>
+        /// TODO:スクリーンショット画像をリサイズする。
+        /// </summary>
+        private void Resize() {
             if(_disposed)
                 throw new ObjectDisposedException("_raw, _processed");
 
             if(_raw == null)
                 throw new InvalidOperationException("_raw のインスタンスが存在しません。");
+
+            // サイズを取得
+            var size = GetSize();
 
             _processed = new Bitmap(size.Width, size.Height);
             using(var g = Graphics.FromImage(_processed)) {
@@ -58,48 +89,59 @@ namespace RabiShot {
         }
 
         /// <summary>
-        /// スクリーンショットを保存する
+        /// TODO:画像のサイズを取得する
         /// </summary>
-        /// <param name="path">保存先のパス</param>
-        /// <param name="format">スクリーンショットの保存形式</param>
-        public void Save(string path, ImageFormat format) {
-            if(_disposed)
-                throw new ObjectDisposedException("_raw, _processed");
+        /// <returns></returns>
+        private Size GetSize() {
+            return new Size();
+        }
 
-            if(_raw == null)
-                throw new InvalidOperationException("_raw のインスタンスが存在しません。");
+        /// <summary>
+        /// ファイルパスを生成する。
+        /// </summary>
+        /// <returns>ファイルパス</returns>
+        private string CreateFilePath() {
+            var name = _fileFmt;
+            var hasNum = false;
+            var numFmt = @"0";
+            var max = int.MaxValue;
 
-            // 処理後の画像が存在する場合はそれを保存し、そうでない場合は取得時の画像を保存している
-            Bitmap target = _processed ?? _raw;
-
-            string dir = Path.GetDirectoryName(path);
-            string fileName = Path.GetFileName(path);
-            string extension = format.GetExtension();
-
-            if(File.Exists(CreatePath(dir, fileName, extension))) {
-                foreach(var i in Enumerable.Range(1, int.MaxValue)) {
-                    fileName = string.Format(
-                        "{0} ({1})",
-                        Path.GetFileName(path),
-                        i);
-
-                    if(!File.Exists(CreatePath(dir, fileName, extension)))
-                        break;
+            foreach (var match in _matches) {
+                if (RxNum.IsMatch(match.ToString())) {
+                    hasNum = true;
+                    var m = RxNum.Match(match.ToString());
+                    numFmt = m.ToString().Substring(1, m.Length - 2);
+                    max = int.Parse(new string('9', m.Length - 2));
+                    name = name.Replace(match.ToString(), @"{0}");
+                } else {
+                    name = name.Replace(match.ToString(), new DateTimeFormat().Generate(match.ToString()));
                 }
             }
 
-            target.Save(CreatePath(dir, fileName, extension), format);
+            var path = CreateFilePath(name);
+            if (!hasNum && !File.Exists(path)) {
+                return path;
+            }
+            if (!hasNum) {
+                name = name + @" ({0})";
+            }
+            for(int i = 1; i <= max; i++) {
+                path = CreateFilePath(string.Format(name, i.ToString(numFmt)));
+                if (!File.Exists(path)) {
+                    return path;
+                }
+            }
+
+            throw new InvalidOperationException();
         }
-
-        private static string CreatePath(string dir, string fileName, string extension) {
-            if(string.IsNullOrEmpty(fileName))
-                throw new ArgumentNullException("fileName");
-            if(string.IsNullOrEmpty(extension))
-                throw new ArgumentNullException("extension");
-
-            return Path.Combine(dir, string.Format("{0}.{1}", fileName, extension));
+        /// <summary>
+        /// ファイルパスを生成する。
+        /// </summary>
+        /// <param name="name">ファイル名</param>
+        /// <returns>ファイルパス</returns>
+        private string CreateFilePath(string name) {
+            return Path.Combine(_dir, string.Format(@"{0}.{1}", name, _ext));
         }
-
 
         #region Disposeパターン
 
@@ -129,6 +171,5 @@ namespace RabiShot {
         }
 
         #endregion
-
     }
 }

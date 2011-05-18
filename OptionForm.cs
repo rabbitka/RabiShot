@@ -32,16 +32,16 @@ namespace RabiShot {
             cmbImageFormat.DisplayMember = "Key";
             cmbImageFormat.ValueMember = "Value";
 
-            var aspectList = new[]
-                             {
-                                 new KeyValuePair<string, AspectType>(AspectType.Width.GetName(), AspectType.Width),
-                                 new KeyValuePair<string, AspectType>(AspectType.Height.GetName(), AspectType.Height),
-                                 new KeyValuePair<string, AspectType>(AspectType.Bigger.GetName(), AspectType.Bigger),
-                                 new KeyValuePair<string, AspectType>(AspectType.Smaller.GetName(), AspectType.Smaller)
-                             };
-            cmbKeepAspect.DataSource = aspectList;
-            cmbKeepAspect.DisplayMember = "Key";
-            cmbKeepAspect.ValueMember = "Value";
+            //var aspectList = new[]
+            //                 {
+            //                     new KeyValuePair<string, AspectType>(AspectType.Width.GetName(), AspectType.Width),
+            //                     new KeyValuePair<string, AspectType>(AspectType.Height.GetName(), AspectType.Height),
+            //                     new KeyValuePair<string, AspectType>(AspectType.Bigger.GetName(), AspectType.Bigger),
+            //                     new KeyValuePair<string, AspectType>(AspectType.Smaller.GetName(), AspectType.Smaller)
+            //                 };
+            //cmbKeepAspect.DataSource = aspectList;
+            //cmbKeepAspect.DisplayMember = "Key";
+            //cmbKeepAspect.ValueMember = "Value";
 
             var op = Option.Instance();
             // 保存先
