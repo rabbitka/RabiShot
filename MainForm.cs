@@ -27,9 +27,6 @@ namespace RabiShot {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnHidden_Click(object sender, EventArgs e) {
-            Option.Instance().SaveDirectory = @"./ss";
-            Option.Instance().FileNameFormat = @"ss-<000>";
-            Option.Instance().ImageFormat = ImageFormat.Png;
             using(var ss = new ScreenShot(new FreeArea().GetRectangle())) {
                 ss.Save();
             }

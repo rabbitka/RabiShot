@@ -1,46 +1,83 @@
-﻿using System.Drawing.Imaging;
+﻿using System;
+using System.Drawing.Imaging;
 
 
 namespace RabiShot {
     /// <summary>
     /// 設定を保持するクラス。
     /// </summary>
-    public class Option {
-        /// <summary>
-        /// 設定ファイルのファイル名
-        /// </summary>
-        private static readonly string OptionFileName = "option.xml";
+    public static class Option {
 
-        /// <summary>
-        /// Optionクラスのインスタンスを保持する。
-        /// </summary>
-        private static Option _instance;
+        static Option() {
+            if (string.IsNullOrEmpty(SaveDirectory)) {
+                SaveDirectory = @".\ss";
+            }
+            if (string.IsNullOrEmpty(FileNameFormat)) {
+                FileNameFormat = @"ss-<000>";
+            }
+            if (string.IsNullOrEmpty(RabiShot.Default.ImageFormat)) {
+                ImageFormat = ImageFormat.Png;
+            }
+        }
 
         /// <summary>
         /// 保存先ディレクトリを取得または設定する。
         /// </summary>
-        public string SaveDirectory { get; set; }
+        public static string SaveDirectory {
+            get { return RabiShot.Default.SaveDirectory; }
+            set { RabiShot.Default.SaveDirectory = value; }
+        }
 
         /// <summary>
         /// ファイル名のフォーマットを取得または設定する。
         /// </summary>
-        public string FileNameFormat { get; set; }
+        public static string FileNameFormat {
+            get { return RabiShot.Default.FileNameFormat; }
+            set { RabiShot.Default.FileNameFormat = value; }
+
+        }
 
         /// <summary>
         /// ファイルのフォーマットを取得または設定する。
         /// </summary>
-        public ImageFormat ImageFormat { get; set; }
+        public static ImageFormat ImageFormat {
+            get { return ImageFormatFromString(RabiShot.Default.ImageFormat); }
+            set { RabiShot.Default.ImageFormat = StringFromImageFormat(value); }
+        }
+
+        #region ImageFormat support.
+
+        private static ImageFormat ImageFormatFromString(string fmt) {
+            if(string.IsNullOrEmpty(fmt)) {
+                return ImageFormat.Png;
+            }
+            switch(fmt) {
+                case "png":
+                    return ImageFormat.Png;
+                case "jpg":
+                    return ImageFormat.Jpeg;
+                case "bmp":
+                    return ImageFormat.Bmp;
+                case "gif":
+                    return ImageFormat.Gif;
+            }
+            throw new ArgumentException("fmt");
+        }
+        private static string StringFromImageFormat(ImageFormat fmt) {
+            if(fmt == null) {
+                return ImageFormat.Png.ToString().ToLower();
+            }
+            return fmt == ImageFormat.Jpeg ? "jpg" : fmt.ToString().ToLower();
+        }
+
+        #endregion
+
 
         /// <summary>
-        /// Optionクラスのインスタンスを取得する。
+        /// 設定した値を保存する。
         /// </summary>
-        /// <returns></returns>
-        public static Option Instance() {
-            if (_instance == null) {
-                _instance = new Option();
-            }
-
-            return _instance;
+        public static void Save() {
+            RabiShot.Default.Save();
         }
     }
 }

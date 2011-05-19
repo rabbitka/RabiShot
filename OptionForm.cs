@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using RabiShot.Format;
 
 
 namespace RabiShot {
@@ -43,11 +47,10 @@ namespace RabiShot {
             //cmbKeepAspect.DisplayMember = "Key";
             //cmbKeepAspect.ValueMember = "Value";
 
-            var op = Option.Instance();
             // 保存先
-            txtSaveDirectory.Text = op.SaveDirectory;
-            txtFileNameFormat.Text = op.FileNameFormat;
-            cmbImageFormat.SelectedItem = op.ImageFormat;
+            txtSaveDirectory.Text = Option.SaveDirectory;
+            txtFileNameFormat.Text = Option.FileNameFormat;
+            cmbImageFormat.SelectedItem = Option.ImageFormat;
             // 後処理
             //            chkDoAfterProcessing.Checked = op.DoAfterProcessing;
             //            chkDoResize.Checked = op.DoResize;
@@ -77,12 +80,37 @@ namespace RabiShot {
 
         private void btnOK_Click(object sender, EventArgs e) {
             // データチェック
-
-            var op = Option.Instance();
-            // 保存先
-            op.SaveDirectory = txtSaveDirectory.Text;
-            op.FileNameFormat = txtFileNameFormat.Text;
-            op.ImageFormat = ((KeyValuePair<string, ImageFormat>)cmbImageFormat.SelectedItem).Value;
+            if (!Directory.Exists(txtSaveDirectory.Text)) {
+                var err = new StringBuilder();
+                err.AppendLine(@"以下のフォルダは存在しません。作成しますか？");
+                err.Append(txtSaveDirectory.Text);
+                var result =
+                    MessageBox.Show(
+                        err.ToString(),
+                        @"保存先フォルダ",
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Information);
+                if (result == DialogResult.Yes) {
+                    Directory.CreateDirectory(txtSaveDirectory.Text);
+                } else if (result == DialogResult.No) {
+                    MessageBox.Show(@"「保存先ディレクトリ」には存在するフォルダを指定してください。");
+                    return;
+                } else {
+                    return;
+                }
+            }
+            if (IsInvalidFileNameFormat()) {
+                MessageBox.Show(
+                    @"ファイル名のフォーマットが間違っています。",
+                    @"ファイル名",
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+                return;
+            }
+            
+            Option.SaveDirectory = txtSaveDirectory.Text;
+            Option.FileNameFormat = txtFileNameFormat.Text;
+            Option.ImageFormat = ((KeyValuePair<string, ImageFormat>)cmbImageFormat.SelectedItem).Value;
             // 後処理
             //            op.DoAfterProcessing = chkDoAfterProcessing.Checked;
             //            op.DoResize = chkDoResize.Checked;
@@ -99,8 +127,30 @@ namespace RabiShot {
             //            op.DoAfterEdit = chkDoAfterEdit.Checked;
             //            op.DoAfterEditPath = txtDoAfterEdit.Text;
             //            op.Save();
-
             Close();
+        }
+
+        /// <summary>
+        /// ファイル名のフォーマットが無効でないかチェックする。
+        /// </summary>
+        /// <returns>無効ならtrueを返す。</returns>
+        private bool IsInvalidFileNameFormat() {
+            var rx = new Regex(@"<.+?>");
+            var rxNum = new Regex(@"<[#0]*0>");
+
+            try {
+                var ms = rx.Matches(txtFileNameFormat.Text);
+                foreach (var m in ms) {
+                    if(rxNum.IsMatch(m.ToString())) {
+                        1.ToString(m.ToString().Substring(1, m.ToString().Length - 2));
+                        continue;
+                    }
+                    new DateTimeFormat().Generate(m.ToString());
+                }
+            } catch {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -36,9 +36,6 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -46,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\HotKey.cs" />
+    <Compile Include="HotKey.cs" />
     <Compile Include="Format\DateTimeFormat.cs" />
     <Compile Include="Format\IFormat.cs" />
     <Compile Include="MainForm.cs">
@@ -60,6 +57,12 @@
     </Compile>
     <Compile Include="OptionForm.Designer.cs">
       <DependentUpon>OptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RabiShot.cs" />
+    <Compile Include="RabiShot.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>RabiShot.settings</DependentUpon>
     </Compile>
     <Compile Include="ScreenShot.cs" />
     <Compile Include="Program.cs" />
@@ -91,6 +94,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,6 +104,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RabiShot.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>RabiShot.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

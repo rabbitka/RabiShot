@@ -26,9 +26,9 @@ namespace RabiShot {
         /// コンストラクタ。
         /// </summary>
         public ScreenShot() {
-            _dir = Option.Instance().SaveDirectory;
-            _fileFmt = Option.Instance().FileNameFormat;
-            _imgFmt = Option.Instance().ImageFormat;
+            _dir = Option.SaveDirectory;
+            _fileFmt = Option.FileNameFormat;
+            _imgFmt = Option.ImageFormat;
             // 拡張子を設定する。Jpegの場合は"jpg"、それ以外は名称をそのままに小文字に変換している。
             _ext = _imgFmt.Equals(ImageFormat.Jpeg) ? "jpg" : _imgFmt.ToString().ToLower();
             _matches = Rx.Matches(_fileFmt);
