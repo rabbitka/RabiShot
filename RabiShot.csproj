@@ -68,6 +68,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Option.cs" />
+    <Compile Include="Settings\XmlSettingBase.cs" />
     <Compile Include="SSType\DisplayAll.cs" />
     <Compile Include="SSType\FreeArea.cs" />
     <Compile Include="SSType\FreeAreaForm.cs">

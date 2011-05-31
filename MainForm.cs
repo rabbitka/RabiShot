@@ -27,9 +27,7 @@ namespace RabiShot {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnHidden_Click(object sender, EventArgs e) {
-            using(var ss = new ScreenShot(new FreeArea().GetRectangle())) {
-                ss.Save();
-            }
+            Option.Load();
         }
         /// <summary>
         /// オプションボタンクリック時

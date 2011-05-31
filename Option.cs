@@ -1,48 +1,86 @@
 ﻿using System;
 using System.Drawing.Imaging;
+using RabiShot.Settings;
 
 
 namespace RabiShot {
     /// <summary>
     /// 設定を保持するクラス。
     /// </summary>
-    public static class Option {
+    public class Option : XmlSettingBase {
+        /// <summary>
+        /// 設定ファイルのファイル名。
+        /// </summary>
+        private static string FileName = @"Option.xml";
 
-        static Option() {
-            if (string.IsNullOrEmpty(SaveDirectory)) {
-                SaveDirectory = @".\ss";
+        /// <summary>
+        /// Optionクラスのインスタンス。
+        /// </summary>
+        private static Option _instance;
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public Option() {
+            Dic.Add("SaveDirectory", ".\\ss");
+            Dic.Add("FileNameFormat", "ss-<000>");
+            Dic.Add("ImageFormat", StringFromImageFormat(ImageFormat.Png));
+        }
+
+        /// <summary>
+        /// Optionクラスのインスタンスを取得する。
+        /// </summary>
+        /// <returns></returns>
+        public static Option Instance() {
+            if (_instance == null) {
+                _instance = new Option();
+                Load();
             }
-            if (string.IsNullOrEmpty(FileNameFormat)) {
-                FileNameFormat = @"ss-<000>";
-            }
-            if (string.IsNullOrEmpty(RabiShot.Default.ImageFormat)) {
-                ImageFormat = ImageFormat.Png;
-            }
+            return _instance;
         }
 
         /// <summary>
         /// 保存先ディレクトリを取得または設定する。
         /// </summary>
-        public static string SaveDirectory {
-            get { return RabiShot.Default.SaveDirectory; }
-            set { RabiShot.Default.SaveDirectory = value; }
+        public string SaveDirectory {
+            get { return Dic["SaveDirectory"]; }
+            set { Dic["SaveDirectory"] = value; }
         }
 
         /// <summary>
         /// ファイル名のフォーマットを取得または設定する。
         /// </summary>
-        public static string FileNameFormat {
-            get { return RabiShot.Default.FileNameFormat; }
-            set { RabiShot.Default.FileNameFormat = value; }
-
+        public string FileNameFormat {
+            get { return Dic["FileNameFormat"]; }
+            set { Dic["FileNameFormat"] = value; }
         }
 
         /// <summary>
         /// ファイルのフォーマットを取得または設定する。
         /// </summary>
-        public static ImageFormat ImageFormat {
-            get { return ImageFormatFromString(RabiShot.Default.ImageFormat); }
-            set { RabiShot.Default.ImageFormat = StringFromImageFormat(value); }
+        public ImageFormat ImageFormat {
+            get { return ImageFormatFromString(Dic["ImageFormat"]); }
+            set { Dic["ImageFormat"] = StringFromImageFormat(value); }
+        }
+
+        /// <summary>
+        /// 設定ファイルを読み込む。
+        /// </summary>
+        public static void Load() {
+            if (_instance == null) {
+                throw new InvalidOperationException("インスタンスが生成されていません。");
+            }
+            _instance.Load(FileName);
+        }
+
+        /// <summary>
+        /// 設定した値を保存する。
+        /// </summary>
+        public static void Save() {
+            if (_instance == null) {
+                throw new InvalidOperationException("インスタンスが生成されていません。");
+            }
+            _instance.Save(FileName);
         }
 
         #region ImageFormat support.
@@ -71,13 +109,5 @@ namespace RabiShot {
         }
 
         #endregion
-
-
-        /// <summary>
-        /// 設定した値を保存する。
-        /// </summary>
-        public static void Save() {
-            RabiShot.Default.Save();
-        }
     }
 }

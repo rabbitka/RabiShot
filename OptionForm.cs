@@ -48,9 +48,9 @@ namespace RabiShot {
             //cmbKeepAspect.ValueMember = "Value";
 
             // 保存先
-            txtSaveDirectory.Text = Option.SaveDirectory;
-            txtFileNameFormat.Text = Option.FileNameFormat;
-            cmbImageFormat.SelectedItem = Option.ImageFormat;
+            txtSaveDirectory.Text = Option.Instance().SaveDirectory;
+            txtFileNameFormat.Text = Option.Instance().FileNameFormat;
+            cmbImageFormat.SelectedValue = Option.Instance().ImageFormat;
             // 後処理
             //            chkDoAfterProcessing.Checked = op.DoAfterProcessing;
             //            chkDoResize.Checked = op.DoResize;
@@ -108,9 +108,9 @@ namespace RabiShot {
                 return;
             }
             
-            Option.SaveDirectory = txtSaveDirectory.Text;
-            Option.FileNameFormat = txtFileNameFormat.Text;
-            Option.ImageFormat = ((KeyValuePair<string, ImageFormat>)cmbImageFormat.SelectedItem).Value;
+            Option.Instance().SaveDirectory = txtSaveDirectory.Text;
+            Option.Instance().FileNameFormat = txtFileNameFormat.Text;
+            Option.Instance().ImageFormat = ((KeyValuePair<string, ImageFormat>)cmbImageFormat.SelectedItem).Value;
             // 後処理
             //            op.DoAfterProcessing = chkDoAfterProcessing.Checked;
             //            op.DoResize = chkDoResize.Checked;
@@ -127,6 +127,7 @@ namespace RabiShot {
             //            op.DoAfterEdit = chkDoAfterEdit.Checked;
             //            op.DoAfterEditPath = txtDoAfterEdit.Text;
             //            op.Save();
+            Option.Save();
             Close();
         }
 
