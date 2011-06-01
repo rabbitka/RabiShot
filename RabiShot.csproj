@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RabiShot</RootNamespace>
     <AssemblyName>RabiShot</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -35,9 +36,6 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -45,10 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\HotKey.cs" />
-    <Compile Include="Core\SSType.cs" />
-    <Compile Include="Core\XmlSetting.cs" />
-    <Compile Include="Extensions\ImageFormatExtensions.cs" />
+    <Compile Include="HotKey.cs" />
+    <Compile Include="Format\DateTimeFormat.cs" />
+    <Compile Include="Format\IFormat.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,25 +58,32 @@
     <Compile Include="OptionForm.Designer.cs">
       <DependentUpon>OptionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RabiShot.cs" />
+    <Compile Include="RabiShot.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>RabiShot.settings</DependentUpon>
+    </Compile>
     <Compile Include="ScreenShot.cs" />
-    <Compile Include="SpecifiedRangeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SpecifiedRangeForm.Designer.cs">
-      <DependentUpon>SpecifiedRangeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AspectType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Option.cs" />
+    <Compile Include="Settings\XmlSettingBase.cs" />
+    <Compile Include="SSType\DisplayAll.cs" />
+    <Compile Include="SSType\FreeArea.cs" />
+    <Compile Include="SSType\FreeAreaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SSType\FreeAreaForm.Designer.cs">
+      <DependentUpon>FreeAreaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SSType\IType.cs" />
+    <Compile Include="SSType\CurrentWindow.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OptionForm.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SpecifiedRangeForm.resx">
-      <DependentUpon>SpecifiedRangeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,7 +93,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,14 +105,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RabiShot.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>RabiShot.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Options\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\success.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\RabiShot.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
