@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text.RegularExpressions;
 using RabiShot.Format;
+using RabiShot.SSType;
 
 
 namespace RabiShot {
@@ -36,9 +37,9 @@ namespace RabiShot {
         /// <summary>
         /// スクリーンショットを保存する範囲を指定したコンストラクタ。
         /// </summary>
-        /// <param name="rect">スクリーンショットの範囲</param>
-        public ScreenShot(Rectangle rect) : this() {
-            SetRectangle(rect);
+        /// <param name="rect">スクリーンショットの範囲を取得するクラス</param>
+        public ScreenShot(IType t) : this() {
+            SetRectangle(t.GetRectangle());
         }
 
         /// <summary>

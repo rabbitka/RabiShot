@@ -76,6 +76,7 @@
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "RabiShot";
+            this.ClientSizeChanged += new System.EventHandler(this.MainForm_ClientSizeChanged);
             this.ResumeLayout(false);
 
         }

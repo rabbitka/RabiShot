@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RabiShot</RootNamespace>
     <AssemblyName>RabiShot</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -58,12 +58,6 @@
     <Compile Include="OptionForm.Designer.cs">
       <DependentUpon>OptionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RabiShot.cs" />
-    <Compile Include="RabiShot.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>RabiShot.settings</DependentUpon>
-    </Compile>
     <Compile Include="ScreenShot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,14 +99,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="RabiShot.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>RabiShot.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Resources\RabiShot.ico" />
+    <None Include="RabiShot.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
