@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace RabiShot.SSType {
     /// <summary>
@@ -36,6 +37,11 @@ namespace RabiShot.SSType {
             return _rect;
         }
 
+        private int _x1;
+        private int _y1;
+        private int _x2;
+        private int _y2;
+
         /// <summary>
         /// ドラッグアンドドロップ開始時の処理。
         /// マウスクリック時、領域選択開始フラグを立てクリックした領域を保存する。
@@ -44,7 +50,8 @@ namespace RabiShot.SSType {
         /// <param name="y">クリック開始時の y 座標</param>
         private void StartSelectionArea(int x, int y) {
             _isSelection = true;
-            _rect = new Rectangle(x, y, 0, 0);
+            _x1 = x;
+            _y1 = y;
         }
 
         /// <summary>
@@ -56,10 +63,22 @@ namespace RabiShot.SSType {
                 return;
 
             using(var g = CreateGraphics()) {
-                g.FillRectangle(Brushes.Black, _rect);
-                _rect.Width = x - _rect.X;
-                _rect.Height = y - _rect.Y;
-                g.FillRectangle(Brushes.AliceBlue, _rect);
+                g.FillRectangle(
+                    Brushes.Black,
+                    Math.Min(_x1, _x2),
+                    Math.Min(_y1, _y2),
+                    Math.Abs(_x1 - _x2),
+                    Math.Abs(_y1 - _y2));
+
+                _x2 = x;
+                _y2 = y;
+
+                g.FillRectangle(
+                    Brushes.AliceBlue,
+                    Math.Min(_x1, _x2),
+                    Math.Min(_y1, _y2),
+                    Math.Abs(_x1 - _x2),
+                    Math.Abs(_y1 - _y2));
             }
         }
 
@@ -69,9 +88,12 @@ namespace RabiShot.SSType {
         /// </summary>
         private void EndSelectionArea(int x, int y) {
             _isSelection = false;
-            _rect.Width = x - _rect.X;
-            _rect.Height = y - _rect.Y;
-            Close();
-        }
-    }
+            _rect = new Rectangle(
+                Math.Min(_x1, _x2),
+                Math.Min(_y1, _y2),
+                Math.Abs(_x1 - _x2),
+                Math.Abs(_y1 - _y2));
+            Close();              
+        }                         
+    }                             
 }

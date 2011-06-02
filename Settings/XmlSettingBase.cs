@@ -23,7 +23,8 @@ namespace RabiShot.Settings {
         /// 設定を保存する。
         /// </summary>
         protected void Save(string fileName) {
-            using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.ReadWrite))
+            // 既存の設定ファイルは上書きしている (FileMode.Create)
+            using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite))
             using (var w = new XmlTextWriter(fs, _shiftjis)) {
                 w.Formatting = Formatting.Indented;
                 w.WriteStartDocument(true);
@@ -47,6 +48,10 @@ namespace RabiShot.Settings {
         /// 設定を読み込む。
         /// </summary>
         protected void Load(string fileName) {
+            if (!File.Exists(fileName)) {
+                return;
+            }
+
             using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             using (var r = new XmlTextReader(fs)) {
                 while (r.Read()) {
